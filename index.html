@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"><!--<![endif]-->
+<head>
+		<meta charset = "UTF-8">
+		
+		<title>Send email with Dynamic Contents </title>
+		<meta name="description" content="The Project a Bootstrap-based, Responsive HTML5 Template">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="./assets/bootstrap.css" rel="stylesheet">
+		<link href="./assets/style.css" rel="stylesheet">
+		<script type="text/javascript" src= "./assets/jquery.min.js"></script>
+		<script type="text/javascript" src= "./assets/angular.js"></script>
+		<script type="text/javascript" src= "./assets/app.js"></script>
+		<script type="text/javascript" src= "./assets/controllers.js"></script>
+
+</head>
+
+
+	<body class="wide" ng-app='app'>
+		<div class="page-wrapper" ng-controller='directController'>
+		
+			<div class="main-container" style="background-color:gray;">
+				<div class="container">
+					<div class="row">
+						<div class="main object-non-visible animated object-visible fadeInUpSmall">
+							<div class="form-block center-block p-30 light-gray-bg border-clear">
+				
+									<!--  start form section -->
+							<form class="form-horizontal" name = "inputForm" ng-submit="valid()" novalidate>
+
+									<!-- start containerElement -->
+									<div class="cotainerElement" >
+							
+									<!--  message section -->
+										<div class = "col-sm-10 alert alert-success" ng-show="msg" style='width:100%;text-align:center'>{{msg}}</div>
+									<!-- end message section  -->
+
+									<!--  start title input section -->
+										<div class="form-group has-feedback">
+											<label for="inputCamTitle" class="col-sm-3 control-label">TITLE</label>
+											<div class="col-sm-8 " ng-class="{ 'has-error' : inputForm.title.$invalid && ! inputForm.title.$pristine }">
+												<input type="text" name="title" class="form-control" ng-model='title' placeholder="title" required>
+												<i class="fa fa-user form-control-feedback" ></i>
+												<p ng-show="inputForm.title.$invalid && !inputForm.title.$pristine" class="help-block">Title is required.</p>
+											</div>
+										</div>
+									<!--  end title section  -->
+									<!--  start contents section -->
+										<div class="form-group has-feedback">
+											<label for="inputCamContents" class="col-sm-3 control-label">CONTENTS</label>
+											<div class="col-sm-8" ng-class="{ 'has-error' : inputForm.contents.$invalid && ! inputForm.contents.$pristine }">
+												<textarea  name = "contents" class="form-control" ng-model='contents' placeholder="contents" required></textarea>
+												<i class="fa fa-lock form-control-feedback"></i>
+												<p ng-show="inputForm.contents.$invalid && !inputForm.contents.$pristine" class="help-block">Contents is required.</p>
+											</div>
+										</div>
+									<!--  end contents section  -->
+									<!--  start template lists section -->
+										<div class="form-group has-feedback">
+											 	<label for="sel1" class="col-sm-3 control-label">TEMPLATE LISTS: </label>
+												<div class="col-sm-8 camLists">
+												  <select class="form-control" id="sel1" ng-model = "selectCampaign" required>
+												  	<option ng-repeat ="campaign in campaignLists" value='{{campaign.id}}' >{{campaign.name}}</option>
+												  </select>
+												</div>
+										</div>
+									<!-- 	end template lists section -->
+									</div>
+									<!-- end containerElememt -->
+
+									<!--  submit button section -->
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-8">
+											<button type="submit" class="btn btn-group btn-default btn-animated" ng-disabled="inputForm.$invalid">SEND </button>
+										</div>
+									</div>
+									<!-- end submit button -->
+								</form>
+									<!-- end form section -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+							<!--  Ajust height of current document -->
+		<script>
+			$winHeight = $(document).height();
+			$(".main-container").css({'height':$winHeight,'padding-top':$winHeight*0.25});
+		</script>
+		
+	</body>
+</html>
